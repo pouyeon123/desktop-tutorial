@@ -1,109 +1,112 @@
-// Header scroll effect
+// Preloader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('done');
+  }, 1400);
+});
+
+// Header scroll
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 40);
+  const floatTop = document.getElementById('floatTop');
+  floatTop.classList.toggle('visible', window.scrollY > 400);
 });
 
-// Mobile nav toggle
-const menuToggle = document.querySelector('.menu-toggle');
+// Mobile nav
+const menuToggle = document.getElementById('menuToggle');
 const mobileNav = document.getElementById('mobileNav');
-
 menuToggle.addEventListener('click', () => {
   mobileNav.classList.toggle('open');
 });
-
-function closeMobileNav() {
-  mobileNav.classList.remove('open');
-}
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => mobileNav.classList.remove('open'));
+});
 
 // Product filter
-const filterBtns = document.querySelectorAll('.filter-btn');
-const productCards = document.querySelectorAll('.product-card');
-
-filterBtns.forEach(btn => {
+document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     const filter = btn.dataset.filter;
-    productCards.forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
     });
   });
 });
 
-// "이 소재로 주문" button — prefill the material select
-document.querySelectorAll('.card-btn').forEach(btn => {
+// Card order button — prefill material select
+const materialMap = {
+  pu: 'pu', eva: 'eva', melamine: 'melamine',
+  neoprene: 'neoprene', epdm: 'epdm', nbr: 'nbr',
+  silicone: 'silicone', pe: 'pe',
+};
+document.querySelectorAll('.card-order-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    const card = btn.closest('.product-card');
-    const materialName = card.querySelector('h3').textContent.trim();
-    const select = document.getElementById('material');
-    const options = Array.from(select.options);
-
-    const materialMap = {
-      '폴리우레탄 폼': 'pu',
-      'EVA 폼': 'eva',
-      '멜라민 스펀지': 'melamine',
-      '네오프렌': 'neoprene',
-      'EPDM 스펀지': 'epdm',
-      'NBR 스펀지': 'nbr',
-      '실리콘 스펀지': 'silicone',
-      'PE 폼': 'pe',
-    };
-
-    const value = materialMap[materialName];
-    if (value) select.value = value;
+    const val = btn.dataset.material;
+    if (val) document.getElementById('material').value = val;
   });
 });
 
-// Order form submission
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Order form
 function submitOrder(e) {
   e.preventDefault();
-
-  const form = document.getElementById('orderForm');
-  const success = document.getElementById('orderSuccess');
-
-  // Simulate submission
-  const submitBtn = form.querySelector('button[type="submit"]');
-  submitBtn.textContent = '처리 중...';
-  submitBtn.disabled = true;
-
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '처리 중...';
+  btn.disabled = true;
   setTimeout(() => {
-    form.style.display = 'none';
+    document.getElementById('orderForm').style.display = 'none';
+    const success = document.getElementById('orderSuccess');
     success.style.display = 'block';
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 800);
+    triggerAos(success);
+  }, 900);
 }
 
 function resetForm() {
   const form = document.getElementById('orderForm');
-  const success = document.getElementById('orderSuccess');
-
   form.reset();
   form.style.display = 'block';
-  success.style.display = 'none';
-
-  const submitBtn = form.querySelector('button[type="submit"]');
-  submitBtn.textContent = '견적 요청 보내기';
-  submitBtn.disabled = false;
+  document.getElementById('orderSuccess').style.display = 'none';
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 견적 요청 보내기';
+  btn.disabled = false;
 }
 
-// Scroll reveal for cards
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+// Simple AOS (Animate on Scroll)
+function triggerAos(el) {
+  el.classList.add('aos-in');
+}
+
+const aosObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.animationDelay = `${(i % 4) * 0.08}s`;
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+      const delay = entry.target.dataset.aosDelay ? parseInt(entry.target.dataset.aosDelay) : 0;
+      setTimeout(() => entry.target.classList.add('aos-in'), delay);
+      aosObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.12 });
 
-document.querySelectorAll('.product-card, .step').forEach(el => {
-  el.style.opacity = '0';
-  observer.observe(el);
-});
+document.querySelectorAll('[data-aos]').forEach(el => aosObserver.observe(el));
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--primary)' : '';
+  });
+}, { passive: true });
