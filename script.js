@@ -1,142 +1,126 @@
-/* Preloader */
+/* ── Loader ── */
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('preloader').classList.add('out'), 1400);
+  setTimeout(() => document.getElementById('loader').classList.add('gone'), 1400);
 });
 
-/* Header */
-const header = document.getElementById('header');
+/* ── Header ── */
+const hd     = document.getElementById('hd');
 const fabTop = document.getElementById('fabTop');
 
 window.addEventListener('scroll', () => {
-  header.classList.toggle('stuck', window.scrollY > 40);
-  fabTop.classList.toggle('show', window.scrollY > 400);
+  hd.classList.toggle('stuck', window.scrollY > 40);
+  fabTop.classList.toggle('vis', window.scrollY > 400);
 }, { passive: true });
 
-/* Mobile menu */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+/* ── Mobile nav ── */
+const hbg    = document.getElementById('hbg');
+const mobNav = document.getElementById('mob-nav');
+hbg.addEventListener('click', () => mobNav.classList.toggle('open'));
+mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobNav.classList.remove('open')));
 
-hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+/* ── Canvas particles ── */
+(function () {
+  const canvas = document.getElementById('canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
 
-/* Product filter */
-document.querySelectorAll('.filter').forEach(btn => {
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  function init() {
+    pts = Array.from({ length: 45 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.8 + .6,
+      vx: (Math.random() - .5) * .35,
+      vy: (Math.random() - .5) * .35,
+      a: Math.random() * .45 + .1,
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
+
+/* ── Reveal on scroll ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+
+/* ── Nav active highlight ── */
+const secEls  = [...document.querySelectorAll('section[id]')];
+const navAncs = [...document.querySelectorAll('.pc-nav a')];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 90;
+  let cur = '';
+  secEls.forEach(s => { if (y >= s.offsetTop) cur = s.id; });
+  navAncs.forEach(a => {
+    const match = a.getAttribute('href') === `#${cur}`;
+    if (!a.classList.contains('cta-link')) a.style.color = match ? 'var(--p)' : '';
+  });
+}, { passive: true });
+
+/* ── Material filter ── */
+document.querySelectorAll('.ft').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.ft').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const f = btn.dataset.f;
-    document.querySelectorAll('.pcard').forEach(c => {
-      c.classList.toggle('off', f !== 'all' && c.dataset.cat !== f);
-    });
+    document.querySelectorAll('.mc').forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
   });
 });
 
-/* Card → prefill material */
-document.querySelectorAll('.pcard-btn').forEach(btn => {
+/* ── Card → pre-select material ── */
+document.querySelectorAll('.mc-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const val = btn.dataset.mat;
-    if (val) document.getElementById('materialSelect').value = val;
+    const val = btn.dataset.m;
+    if (val) document.getElementById('matSel').value = val;
   });
 });
 
-/* FAQ */
-function toggleFaq(btn) {
-  const item = btn.closest('.fitem');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.fitem.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+/* ── FAQ accordion ── */
+function faq(btn) {
+  const item = btn.closest('.fi');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.fi.open').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
 }
 
-/* Order form */
-function handleSubmit(e) {
+/* ── Order form ── */
+function submitForm(e) {
   e.preventDefault();
-  const btn = document.getElementById('submitBtn');
+  const btn = document.getElementById('qBtn');
   btn.textContent = '처리 중...';
   btn.disabled = true;
   setTimeout(() => {
-    document.getElementById('orderForm').style.display = 'none';
-    const done = document.getElementById('orderDone');
+    document.getElementById('qForm').style.display = 'none';
+    const done = document.getElementById('qDone');
     done.style.display = 'block';
+    done.classList.add('on');
     done.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 800);
 }
 
 function resetForm() {
-  const form = document.getElementById('orderForm');
+  const form = document.getElementById('qForm');
   form.reset();
   form.style.display = 'block';
-  document.getElementById('orderDone').style.display = 'none';
-  const btn = document.getElementById('submitBtn');
-  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 견적 요청 보내기';
+  document.getElementById('qDone').style.display = 'none';
+  const btn = document.getElementById('qBtn');
+  btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>견적 요청 보내기';
   btn.disabled = false;
 }
-
-/* Scroll reveal */
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('in');
-    ro.unobserve(entry.target);
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal, .reveal-right').forEach(el => ro.observe(el));
-
-/* Nav active highlight */
-const sections = [...document.querySelectorAll('section[id]')];
-const navLinks = [...document.querySelectorAll('#nav a')];
-
-window.addEventListener('scroll', () => {
-  const y = window.scrollY + 100;
-  let cur = '';
-  sections.forEach(s => { if (y >= s.offsetTop) cur = s.id; });
-  navLinks.forEach(a => {
-    const isActive = a.getAttribute('href') === `#${cur}`;
-    a.style.color = (isActive && !a.classList.contains('nav-order')) ? 'var(--blue)' : '';
-  });
-}, { passive: true });
-
-/* Simple hero particles */
-(function () {
-  const canvas = document.createElement('canvas');
-  const wrap = document.getElementById('particles');
-  if (!wrap) return;
-  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;opacity:.35';
-  wrap.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-  let W, H, dots = [];
-
-  function resize() {
-    W = canvas.width = wrap.offsetWidth;
-    H = canvas.height = wrap.offsetHeight;
-  }
-
-  function init() {
-    dots = Array.from({ length: 40 }, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      r: Math.random() * 2 + 1,
-      vx: (Math.random() - .5) * .4,
-      vy: (Math.random() - .5) * .4,
-      a: Math.random() * .5 + .2,
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    dots.forEach(d => {
-      d.x += d.vx; d.y += d.vy;
-      if (d.x < 0 || d.x > W) d.vx *= -1;
-      if (d.y < 0 || d.y > H) d.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${d.a})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  init();
-  draw();
-  window.addEventListener('resize', () => { resize(); init(); });
-})();
