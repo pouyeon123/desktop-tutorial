@@ -157,38 +157,23 @@ strong{ font-weight: 700; }
 .kpi span { font-size: 11px; color: rgba(255,255,255,.5); }
 .kpi-div { width: 1px; height: 30px; background: rgba(255,255,255,.18); }
 
-/* Material wheel */
+/* Hero material grid */
 .hero-vis { display: flex; align-items: center; justify-content: center; }
-.mat-wheel {
-  position: relative; width: 300px; height: 300px;
+.mat-grid-hero {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  width: 320px;
 }
-.mat-center {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 76px; height: 76px; background: var(--p); border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  box-shadow: 0 0 0 10px rgba(29,78,216,.22), 0 0 0 20px rgba(29,78,216,.08);
-  z-index: 2;
-}
-.mat-center span { font-size: 22px; font-weight: 900; color: #fff; line-height: 1; }
-.mat-center small { font-size: 11px; color: rgba(255,255,255,.65); }
-
-.mat-item {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: rotate(calc(var(--i) * 45deg)) translateY(-120px) rotate(calc(var(--i) * -45deg));
-  transform-origin: 0 0;
+.mgh-card {
   background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
-  backdrop-filter: blur(8px); border-radius: 12px;
-  padding: 10px 13px; text-align: center; color: #fff;
-  transition: transform var(--tr), background var(--tr);
-  width: 80px; margin-left: -40px; margin-top: -22px;
+  backdrop-filter: blur(10px); border-radius: 14px;
+  padding: 16px 14px; color: #fff;
+  display: flex; flex-direction: column; gap: 5px;
+  transition: background var(--tr), transform var(--tr);
 }
-.mat-item::before {
-  content: ''; display: block; width: 8px; height: 8px; background: var(--c);
-  border-radius: 50%; margin: 0 auto 5px;
-}
-.mat-item:hover { background: rgba(255,255,255,.2); transform: rotate(calc(var(--i) * 45deg)) translateY(-128px) rotate(calc(var(--i) * -45deg)); }
-.mat-item span { font-size: 11px; font-weight: 700; }
+.mgh-card:hover { background: rgba(255,255,255,.18); transform: translateY(-3px); }
+.mgh-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mgh-card b { font-size: 13px; font-weight: 700; }
+.mgh-card small { font-size: 11px; color: rgba(255,255,255,.55); }
 
 /* scroll hint */
 .scroll-hint {
