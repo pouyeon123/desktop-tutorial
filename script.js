@@ -6,28 +6,30 @@ window.addEventListener('load', () => {
   }, 1400);
 });
 
-/* ── Header scroll ── */
-const hd     = document.getElementById('hd');
-const fabTop = document.getElementById('fabTop');
+/* ── Header scroll + Top button ── */
+const header = document.getElementById('header');
+const topBtn = document.getElementById('topBtn');
 
 window.addEventListener('scroll', () => {
-  if (hd)     hd.classList.toggle('stuck', window.scrollY > 40);
-  if (fabTop) fabTop.classList.toggle('vis', window.scrollY > 400);
+  if (header) header.classList.toggle('stuck', window.scrollY > 40);
+  if (topBtn) topBtn.classList.toggle('vis', window.scrollY > 400);
 }, { passive: true });
 
+if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
 /* ── Mobile nav ── */
-const hbg    = document.getElementById('hbg');
-const mobNav = document.getElementById('mob-nav');
-if (hbg && mobNav) {
-  hbg.addEventListener('click', () => mobNav.classList.toggle('open'));
-  mobNav.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => mobNav.classList.remove('open'))
+const menuBtn   = document.getElementById('menuBtn');
+const mobileGnb = document.getElementById('mobileGnb');
+if (menuBtn && mobileGnb) {
+  menuBtn.addEventListener('click', () => mobileGnb.classList.toggle('open'));
+  mobileGnb.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => mobileGnb.classList.remove('open'))
   );
 }
 
 /* ── Canvas particles ── */
 (function () {
-  const canvas = document.getElementById('canvas');
+  const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
@@ -40,7 +42,7 @@ if (hbg && mobNav) {
   }
 
   function init() {
-    pts = Array.from({ length: 40 }, () => ({
+    pts = Array.from({ length: 45 }, () => ({
       x:  Math.random() * W,
       y:  Math.random() * H,
       r:  Math.random() * 1.6 + 0.5,
@@ -64,91 +66,93 @@ if (hbg && mobNav) {
     requestAnimationFrame(draw);
   }
 
-  resize();
-  init();
-  draw();
+  resize(); init(); draw();
   window.addEventListener('resize', () => { resize(); init(); });
 })();
 
 /* ── Reveal on scroll ── */
-const ro = new IntersectionObserver(entries => {
+const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('on');
-      ro.unobserve(e.target);
+      revealObs.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 
 /* ── Nav active highlight ── */
-const secEls  = [...document.querySelectorAll('section[id]')];
-const navAncs = [...document.querySelectorAll('.pc-nav a')];
+const secEls = [...document.querySelectorAll('section[id]')];
+const gnbAncs = [...document.querySelectorAll('#gnb a')];
 
 window.addEventListener('scroll', () => {
   const y = window.scrollY + 90;
   let cur = '';
   secEls.forEach(s => { if (y >= s.offsetTop) cur = s.id; });
-  navAncs.forEach(a => {
-    if (!a.classList.contains('cta-link')) {
+  gnbAncs.forEach(a => {
+    if (!a.classList.contains('gnb-cta')) {
       a.style.color = (a.getAttribute('href') === `#${cur}`) ? 'var(--p)' : '';
     }
   });
 }, { passive: true });
 
-/* ── Material filter ── */
-document.querySelectorAll('.ft').forEach(btn => {
+/* ── Product filter ── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.ft').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const f = btn.dataset.f;
-    document.querySelectorAll('.mc').forEach(c =>
-      c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f)
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(c =>
+      c.classList.toggle('hide', f !== 'all' && c.dataset.category !== f)
     );
   });
 });
 
 /* ── Card → pre-select material ── */
-document.querySelectorAll('.mc-btn').forEach(btn => {
+document.querySelectorAll('.card-order-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const sel = document.getElementById('matSel');
-    if (sel && btn.dataset.m) sel.value = btn.dataset.m;
+    const sel = document.getElementById('materialSelect');
+    if (sel && btn.dataset.mat) sel.value = btn.dataset.mat;
   });
 });
 
 /* ── FAQ accordion ── */
-function toggleFaq(btn) {
-  const item = btn.closest('.fi');
-  if (!item) return;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.fi.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    if (!item) return;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
 
 /* ── Order form ── */
-function submitForm(e) {
-  e.preventDefault();
-  const btn  = document.getElementById('qBtn');
-  const form = document.getElementById('qForm');
-  const done = document.getElementById('qDone');
-  if (!btn || !form || !done) return;
+const orderForm = document.getElementById('orderForm');
+if (orderForm) {
+  orderForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn  = document.getElementById('submitBtn');
+    const done = document.getElementById('orderDone');
+    if (!btn || !done) return;
 
-  btn.textContent = '처리 중...';
-  btn.disabled = true;
+    btn.textContent = '처리 중...';
+    btn.disabled = true;
 
-  setTimeout(() => {
-    form.style.display = 'none';
-    done.style.display = 'block';
-    done.classList.add('on');
-    done.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 800);
+    setTimeout(() => {
+      orderForm.style.display = 'none';
+      done.style.display = 'block';
+      done.classList.add('on');
+      done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 800);
+  });
 }
 
-function resetForm() {
-  const form = document.getElementById('qForm');
-  const done = document.getElementById('qDone');
-  const btn  = document.getElementById('qBtn');
+function resetOrderForm() {
+  const form = document.getElementById('orderForm');
+  const done = document.getElementById('orderDone');
+  const btn  = document.getElementById('submitBtn');
   if (!form || !done || !btn) return;
 
   form.reset();
