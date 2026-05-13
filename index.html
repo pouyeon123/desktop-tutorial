@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TY스펀지 - 폴리우레탄, EVA, 실리콘 등 8가지 스펀지 소재 주문제작 전문. 소량 1개부터 대량 OEM까지, 정밀 가공·빠른 납기·전국 배송." />
+  <meta name="keywords" content="스펀지 주문제작, 폴리우레탄 폼, EVA 폼, 실리콘 스펀지, 네오프렌, EPDM, NBR, 완충재, 방음재, 가스켓" />
+  <meta property="og:title" content="TY스펀지 | 스펀지 주문제작 전문" />
+  <meta property="og:description" content="소량 1개부터 대량 OEM까지. 8가지 소재 맞춤 제작, 샘플 제공, 전국 익일 배송." />
+  <meta property="og:type" content="website" />
+  <title>TY스펀지 | 스펀지 주문제작 전문</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 프리로더 -->
+  <div id="loader">
+    <div class="loader-box">
+      <p class="loader-logo">TY<span>스펀지</span></p>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- 헤더 -->
+  <header id="header">
+    <div class="inner header-inner">
+      <a href="#hero" class="logo">TY<span>스펀지</span></a>
+      <nav id="gnb">
+        <a href="#about">회사소개</a>
+        <a href="#products">소재안내</a>
+        <a href="#process">제작과정</a>
+        <a href="#reviews">고객후기</a>
+        <a href="#faq">자주묻는질문</a>
+        <a href="#order" class="gnb-cta">견적 요청</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="mobileGnb" class="mobile-gnb">
+      <a href="#about">회사소개</a>
+      <a href="#products">소재안내</a>
+      <a href="#process">제작과정</a>
+      <a href="#reviews">고객후기</a>
+      <a href="#faq">자주묻는질문</a>
+      <a href="#order">견적 요청</a>
+    </nav>
+  </header>
+
+  <!-- 히어로 -->
+  <section id="hero" class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="inner hero-body">
+      <div class="hero-text" data-reveal>
+        <div class="hero-label">
+          <span class="label-dot"></span>
+          스펀지 주문제작 전문 15년
+        </div>
+        <h1>원하는 소재·규격·경도<br /><em>딱 맞는 스펀지</em>를<br />만들어 드립니다</h1>
+        <p>폴리우레탄부터 실리콘까지 8가지 소재,<br />소량 1개부터 대량 OEM까지 100% 맞춤 제작.</p>
+        <div class="hero-btns">
+          <a href="#order" class="btn btn-white">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            무료 견적 받기
+          </a>
+          <a href="#products" class="btn btn-outline-white">소재 살펴보기 →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>3,000+</strong><span>누적 제작건수</span></div>
+          <div class="stat-line"></div>
+          <div class="stat"><strong>1일</strong><span>견적 회신</span></div>
+          <div class="stat-line"></div>
+          <div class="stat"><strong>±0.5mm</strong><span>가공 정밀도</span></div>
+          <div class="stat-line"></div>
+          <div class="stat"><strong>전국</strong><span>익일 배송</span></div>
+        </div>
+      </div>
+      <div class="hero-cards" data-reveal="right">
+        <div class="hc-grid">
+          <div class="hc"><span class="hc-dot" style="background:#3b82f6"></span><b>폴리우레탄 폼</b><small>경도 10~80도</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#22c55e"></span><b>EVA 폼</b><small>방수·충격흡수</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#a855f7"></span><b>멜라민 스펀지</b><small>세정·흡음</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#f97316"></span><b>네오프렌</b><small>내수·내후성</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#ef4444"></span><b>EPDM 스펀지</b><small>내오존·건축용</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#0ea5e9"></span><b>NBR 스펀지</b><small>내유성·산업용</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#eab308"></span><b>실리콘 스펀지</b><small>-60°C~230°C</small></div>
+          <div class="hc"><span class="hc-dot" style="background:#6366f1"></span><b>PE 폼</b><small>경량·단열</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-down">
+      <div class="scroll-mouse"><div class="scroll-ball"></div></div>
+      <span>스크롤</span>
+    </div>
+  </section>
+
+  <!-- 마키 -->
+  <div class="marquee">
+    <div class="marquee-inner" aria-hidden="true">
+      <span>폴리우레탄 폼</span><i>·</i><span>EVA 폼</span><i>·</i><span>멜라민 스펀지</span><i>·</i><span>네오프렌</span><i>·</i><span>EPDM 스펀지</span><i>·</i><span>NBR 스펀지</span><i>·</i><span>실리콘 스펀지</span><i>·</i><span>PE 폼</span><i>·</i>
+      <span>폴리우레탄 폼</span><i>·</i><span>EVA 폼</span><i>·</i><span>멜라민 스펀지</span><i>·</i><span>네오프렌</span><i>·</i><span>EPDM 스펀지</span><i>·</i><span>NBR 스펀지</span><i>·</i><span>실리콘 스펀지</span><i>·</i><span>PE 폼</span><i>·</i>
+    </div>
+  </div>
+
+  <!-- 회사소개 -->
+  <section id="about" class="section">
+    <div class="inner about-grid">
+      <div class="about-visual" data-reveal>
+        <div class="feature-grid">
+          <div class="feat"><span>🏭</span><b>직접 생산</b><p>자체 공장 운영</p></div>
+          <div class="feat"><span>📐</span><b>정밀 가공</b><p>±0.5mm 공차</p></div>
+          <div class="feat"><span>🚚</span><b>빠른 납기</b><p>평균 1~3일</p></div>
+          <div class="feat"><span>💯</span><b>품질 보증</b><p>무상 재제작 AS</p></div>
+        </div>
+        <div class="years-badge"><strong>15</strong><span>년 경험</span></div>
+      </div>
+      <div class="about-text" data-reveal="right">
+        <span class="tag">회사소개</span>
+        <h2>스펀지 하나에<br />15년의 기술을 담습니다</h2>
+        <p>TY스펀지는 2010년 설립 이래 전자·건축·자동차·의료·식품 등 다양한 산업 분야에 최적화된 스펀지 소재를 공급해왔습니다. 소재 선정부터 정밀 가공, 납품까지 원스톱으로 제공합니다.</p>
+        <ul class="check-list">
+          <li><b>소량 1개~대량 OEM</b> 샘플 테스트 후 양산까지 유연하게 대응합니다.</li>
+          <li><b>CNC·워터젯 정밀 재단</b> 원하는 크기·형태로 정밀 가공합니다.</li>
+          <li><b>8종 이상 소재 즉시 출고</b> 다양한 소재를 재고로 보유합니다.</li>
+        </ul>
+        <a href="#order" class="btn btn-primary">상담 문의하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 소재안내 -->
+  <section id="products" class="section bg-gray">
+    <div class="inner">
+      <div class="section-head" data-reveal>
+        <span class="tag">소재 안내</span>
+        <h2>8가지 스펀지 소재</h2>
+        <p>용도·환경·예산에 맞는 최적의 소재를 추천해드립니다.</p>
+      </div>
+      <div class="filter-wrap" data-reveal>
+        <button class="filter-btn active" data-filter="all">전체</button>
+        <button class="filter-btn" data-filter="foam">폼 계열</button>
+        <button class="filter-btn" data-filter="rubber">고무 계열</button>
+        <button class="filter-btn" data-filter="special">특수 소재</button>
+      </div>
+      <div class="product-grid">
+
+        <div class="product-card" data-category="foam" data-reveal>
+          <div class="card-head" style="background:#eff8ff">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="6" y="15" width="40" height="24" rx="9" fill="#3b82f6" opacity=".15"/><rect x="11" y="20" width="30" height="15" rx="6" fill="#3b82f6" opacity=".4"/><rect x="16" y="23" width="20" height="9" rx="4" fill="#3b82f6"/></svg>
+            <span class="card-badge">인기 1위</span>
+          </div>
+          <div class="card-body">
+            <h3>폴리우레탄 폼</h3>
+            <p>가장 범용적인 스펀지. 경도·밀도를 자유롭게 조절할 수 있어 활용 범위가 넓습니다.</p>
+            <dl><dt>경도</dt><dd>10 ~ 80도</dd><dt>두께</dt><dd>1 ~ 200mm</dd><dt>용도</dt><dd>포장·매트리스·방음</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="pu">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="foam" data-reveal>
+          <div class="card-head" style="background:#fff7ed">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="4" y="13" width="44" height="28" rx="10" fill="#f97316" opacity=".12"/><circle cx="18" cy="27" r="8" fill="#f97316" opacity=".35"/><circle cx="34" cy="27" r="8" fill="#f97316" opacity=".35"/><rect x="13" y="22" width="26" height="10" rx="5" fill="#f97316"/></svg>
+            <span class="card-badge" style="background:#fff3e0;color:#c2510a">방수</span>
+          </div>
+          <div class="card-body">
+            <h3>EVA 폼</h3>
+            <p>에틸렌 비닐 아세테이트. 방수·내화학성이 뛰어나고 충격흡수력이 탁월합니다.</p>
+            <dl><dt>경도</dt><dd>Shore A 20~70</dd><dt>두께</dt><dd>2 ~ 100mm</dd><dt>용도</dt><dd>신발·스포츠·케이스</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="eva">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="special" data-reveal>
+          <div class="card-head" style="background:#faf5ff">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="6" y="8" width="40" height="36" rx="8" fill="#a855f7" opacity=".1"/><path d="M10 26 Q26 10 42 26 Q26 42 10 26Z" fill="#a855f7" opacity=".3"/><circle cx="26" cy="26" r="7" fill="#a855f7"/></svg>
+            <span class="card-badge" style="background:#f3e8ff;color:#7e22ce">세정용</span>
+          </div>
+          <div class="card-body">
+            <h3>멜라민 스펀지</h3>
+            <p>3D 그물 구조로 물만으로 강력 세정. 소음흡수재로도 많이 활용됩니다.</p>
+            <dl><dt>밀도</dt><dd>7 ~ 12 kg/m³</dd><dt>두께</dt><dd>5 ~ 80mm</dd><dt>용도</dt><dd>세정·흡음·단열</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="melamine">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="rubber" data-reveal>
+          <div class="card-head" style="background:#f0fdf4">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><ellipse cx="26" cy="26" rx="19" ry="13" fill="#22c55e" opacity=".12"/><ellipse cx="26" cy="26" rx="13" ry="8" fill="#22c55e" opacity=".3"/><ellipse cx="26" cy="26" rx="6" ry="4" fill="#22c55e"/></svg>
+            <span class="card-badge" style="background:#dcfce7;color:#15803d">내수</span>
+          </div>
+          <div class="card-body">
+            <h3>네오프렌</h3>
+            <p>합성고무 계열. 내수성·내후성·내열성이 우수하여 산업·야외 환경에 적합합니다.</p>
+            <dl><dt>경도</dt><dd>Shore A 20~60</dd><dt>두께</dt><dd>1 ~ 50mm</dd><dt>용도</dt><dd>잠수복·가스켓·방진</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="neoprene">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="rubber" data-reveal>
+          <div class="card-head" style="background:#fff5f5">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="5" y="17" width="42" height="20" rx="8" fill="#ef4444" opacity=".1"/><path d="M9 27 Q26 15 43 27" stroke="#ef4444" stroke-width="3.5" opacity=".4" fill="none" stroke-linecap="round"/><path d="M9 27 Q26 39 43 27" stroke="#ef4444" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>
+            <span class="card-badge" style="background:#fee2e2;color:#b91c1c">내후성</span>
+          </div>
+          <div class="card-body">
+            <h3>EPDM 스펀지</h3>
+            <p>내오존·내자외선 최강. 건축용 씰링·자동차 가스켓의 표준 소재입니다.</p>
+            <dl><dt>경도</dt><dd>Shore A 15~50</dd><dt>두께</dt><dd>2 ~ 60mm</dd><dt>용도</dt><dd>창문씰·차량가스켓</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="epdm">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="rubber" data-reveal>
+          <div class="card-head" style="background:#f0f9ff">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="7" y="13" width="38" height="28" rx="9" fill="#0ea5e9" opacity=".1"/><line x1="11" y1="26" x2="41" y2="26" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/><line x1="11" y1="19" x2="41" y2="19" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" opacity=".4"/><line x1="11" y1="33" x2="41" y2="33" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg>
+            <span class="card-badge" style="background:#e0f2fe;color:#0369a1">내유성</span>
+          </div>
+          <div class="card-body">
+            <h3>NBR 스펀지</h3>
+            <p>니트릴 고무 계열. 기름·연료에 강하며 산업용 씰링·패킹에 최적화된 소재.</p>
+            <dl><dt>경도</dt><dd>Shore A 30~70</dd><dt>두께</dt><dd>2 ~ 50mm</dd><dt>용도</dt><dd>오일씰·연료호스·패킹</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="nbr">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="special" data-reveal>
+          <div class="card-head" style="background:#fefce8">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="17" fill="#eab308" opacity=".1"/><circle cx="26" cy="26" r="11" fill="#eab308" opacity=".25"/><line x1="26" y1="9" x2="26" y2="14" stroke="#eab308" stroke-width="3" stroke-linecap="round"/><line x1="26" y1="38" x2="26" y2="43" stroke="#eab308" stroke-width="3" stroke-linecap="round"/><line x1="9" y1="26" x2="14" y2="26" stroke="#eab308" stroke-width="3" stroke-linecap="round"/><line x1="38" y1="26" x2="43" y2="26" stroke="#eab308" stroke-width="3" stroke-linecap="round"/></svg>
+            <span class="card-badge" style="background:#fef9c3;color:#854d0e">내열</span>
+          </div>
+          <div class="card-body">
+            <h3>실리콘 스펀지</h3>
+            <p>-60°C~230°C 광범위한 사용 온도. 식품·의료 등급 인증으로 안전성이 검증됩니다.</p>
+            <dl><dt>온도</dt><dd>-60°C ~ 230°C</dd><dt>두께</dt><dd>1 ~ 40mm</dd><dt>용도</dt><dd>식품기계·의료·오븐</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="silicone">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="foam" data-reveal>
+          <div class="card-head" style="background:#eef2ff">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><rect x="5" y="8" width="19" height="19" rx="5" fill="#6366f1" opacity=".25"/><rect x="28" y="8" width="19" height="19" rx="5" fill="#6366f1" opacity=".25"/><rect x="5" y="31" width="19" height="14" rx="5" fill="#6366f1" opacity=".55"/><rect x="28" y="31" width="19" height="14" rx="5" fill="#6366f1" opacity=".55"/></svg>
+            <span class="card-badge" style="background:#e0e7ff;color:#3730a3">경량</span>
+          </div>
+          <div class="card-body">
+            <h3>PE 폼</h3>
+            <p>폴리에틸렌 발포체. 가볍고 방습성이 우수하여 포장재·단열재로 광범위하게 사용됩니다.</p>
+            <dl><dt>밀도</dt><dd>15 ~ 50 kg/m³</dd><dt>두께</dt><dd>2 ~ 150mm</dd><dt>용도</dt><dd>포장완충·단열·스포츠</dd></dl>
+            <a href="#order" class="card-order-btn" data-mat="pe">이 소재로 주문 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 제작과정 -->
+  <section id="process" class="section">
+    <div class="inner">
+      <div class="section-head" data-reveal>
+        <span class="tag">제작 과정</span>
+        <h2>주문부터 납품까지 4단계</h2>
+        <p>복잡한 절차 없이 간단하게 맞춤 스펀지를 받아보세요.</p>
+      </div>
+      <div class="process-row">
+        <div class="process-step" data-reveal>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <strong>01</strong><h4>소재 &amp; 규격 상담</h4>
+          <p>용도에 맞는 소재, 두께, 크기, 경도, 색상을 전화·카카오·이메일로 상담합니다.</p>
+        </div>
+        <div class="process-arrow" data-reveal>→</div>
+        <div class="process-step" data-reveal>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <strong>02</strong><h4>견적 &amp; 샘플</h4>
+          <p>견적서를 영업일 1일 내 발송합니다. 필요 시 샘플을 먼저 제공해드립니다.</p>
+        </div>
+        <div class="process-arrow" data-reveal>→</div>
+        <div class="process-step" data-reveal>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+          <strong>03</strong><h4>정밀 제작</h4>
+          <p>주문 확정 후 1~3일 내 CNC 재단·가공. 수치 오차 ±0.5mm 이내로 제작합니다.</p>
+        </div>
+        <div class="process-arrow" data-reveal>→</div>
+        <div class="process-step" data-reveal>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <strong>04</strong><h4>포장 &amp; 배송</h4>
+          <p>전용 포장재로 안전하게 포장 후 전국 익일 배송합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 고객후기 -->
+  <section id="reviews" class="section bg-gray">
+    <div class="inner">
+      <div class="section-head" data-reveal>
+        <span class="tag">고객 후기</span>
+        <h2>고객이 직접 말하는 TY스펀지</h2>
+      </div>
+      <div class="review-grid">
+        <div class="review-card" data-reveal>
+          <div class="review-stars">★★★★★</div>
+          <p>"포장용 완충재를 여러 업체에 문의했는데 TY스펀지가 가장 빠르게 샘플을 보내줬습니다. 품질도 만족스러워 바로 대량 주문했어요."</p>
+          <div class="reviewer"><div class="avatar" style="background:#1d4ed8">김</div><div><b>김○○ 대표</b><small>전자부품 제조업 · 서울</small></div></div>
+        </div>
+        <div class="review-card" data-reveal>
+          <div class="review-stars">★★★★★</div>
+          <p>"실리콘 스펀지를 식품기계에 사용했는데 내열성이 정말 뛰어나네요. 담당자분이 소재 선정까지 꼼꼼히 도와주셔서 감사했습니다."</p>
+          <div class="reviewer"><div class="avatar" style="background:#16a34a">박</div><div><b>박○○ 팀장</b><small>식품기계 제조 · 경기</small></div></div>
+        </div>
+        <div class="review-card" data-reveal>
+          <div class="review-stars">★★★★★</div>
+          <p>"EPDM 스펀지로 창틀 씰링 작업을 했는데 단가도 저렴하고 납기도 빨랐습니다. 재주문 의사 100%입니다!"</p>
+          <div class="reviewer"><div class="avatar" style="background:#ea580c">이</div><div><b>이○○ 소장</b><small>건축 인테리어 · 부산</small></div></div>
+        </div>
+        <div class="review-card" data-reveal>
+          <div class="review-stars">★★★★☆</div>
+          <p>"소량 샘플부터 시작해서 지금은 매달 정기 주문하고 있습니다. 복잡한 형태의 CNC 가공도 깔끔하게 해주셔서 믿고 맡깁니다."</p>
+          <div class="reviewer"><div class="avatar" style="background:#7c3aed">최</div><div><b>최○○ 이사</b><small>자동차 부품 · 울산</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 자주묻는질문 -->
+  <section id="faq" class="section">
+    <div class="inner faq-inner">
+      <div class="section-head" data-reveal>
+        <span class="tag">FAQ</span>
+        <h2>자주 묻는 질문</h2>
+      </div>
+      <div class="faq-list" data-reveal>
+        <div class="faq-item">
+          <button class="faq-q">최소 주문 수량이 있나요? <span>＋</span></button>
+          <div class="faq-a"><p>아니요, 1개부터 주문 가능합니다. 소량 샘플 테스트 후 대량 발주도 환영합니다. 수량에 따라 단가가 달라지므로 견적 문의 시 수량을 알려주시면 정확한 가격을 안내해드립니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">납기는 얼마나 걸리나요? <span>＋</span></button>
+          <div class="faq-a"><p>재고 소재 기준 1~2일, 특수 소재나 대량 주문은 3~5일 소요됩니다. 긴급 주문은 별도 협의 후 당일 출고도 가능합니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">어떤 형태로 가공이 가능한가요? <span>＋</span></button>
+          <div class="faq-a"><p>직사각형 재단은 물론, CNC 및 워터젯으로 원형·이형·홀 가공, 경사 재단(베벨 컷) 등 다양한 형태 가공이 가능합니다. 도면 파일(DXF, PDF)을 보내주시면 검토 후 안내드립니다.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">색상 선택이 가능한가요? <span>＋</span></button>
+          <div class="faq-a"><p>폴리우레탄 폼·EVA 폼 등 일부 소재는 검정·흰색·회색·파랑 등 다양한 색상으로 제공됩니다. 원하시는 색상이 있으면 주문 시 명시해주시거나 문의해주세요.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">견본(샘플)을 먼저 받아볼 수 있나요? <span>＋</span></button>
+          <div class="faq-a"><p>네, 가능합니다. 소재·두께별 샘플을 요청하시면 소량의 샘플을 유·무상으로 제공해드립니다. 샘플 비용은 소재 및 수량에 따라 달라지오니 문의해주세요.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">세금계산서 발행이 되나요? <span>＋</span></button>
+          <div class="faq-a"><p>네, 사업자 고객께는 세금계산서를 발행해드립니다. 주문 시 사업자등록번호와 담당자 이메일을 알려주시면 됩니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 견적/주문 -->
+  <section id="order" class="section bg-gray">
+    <div class="inner">
+      <div class="section-head" data-reveal>
+        <span class="tag">주문하기</span>
+        <h2>맞춤 주문 &amp; 견적 신청</h2>
+        <p>아래 양식을 작성하시면 <strong>영업일 1일 내</strong> 담당자가 연락드립니다.</p>
+      </div>
+      <div class="order-layout">
+        <aside class="order-aside" data-reveal>
+          <h3>TY스펀지와 함께하면</h3>
+          <ul>
+            <li><span>⚡</span><div><b>빠른 견적</b><p>영업일 1일 이내 회신</p></div></li>
+            <li><span>🎯</span><div><b>정밀 가공</b><p>±0.5mm 공차 보장</p></div></li>
+            <li><span>📦</span><div><b>안전 포장</b><p>전용 포장재 사용</p></div></li>
+            <li><span>🔄</span><div><b>AS 보장</b><p>불량 시 무상 재제작</p></div></li>
+            <li><span>🏷️</span><div><b>세금계산서</b><p>사업자 발행 가능</p></div></li>
+          </ul>
+        </aside>
+        <form id="orderForm" class="order-form" data-reveal="right">
+          <div class="form-grid">
+            <div class="form-field"><label>성함 / 회사명 <em>*</em></label><input type="text" name="name" placeholder="홍길동 / (주)예시" required /></div>
+            <div class="form-field"><label>연락처 <em>*</em></label><input type="tel" name="phone" placeholder="010-0000-0000" required /></div>
+            <div class="form-field"><label>이메일</label><input type="email" name="email" placeholder="example@email.com" /></div>
+            <div class="form-field"><label>희망 소재 <em>*</em></label>
+              <select name="material" id="materialSelect" required>
+                <option value="">소재 선택</option>
+                <option value="pu">폴리우레탄 폼</option>
+                <option value="eva">EVA 폼</option>
+                <option value="melamine">멜라민 스펀지</option>
+                <option value="neoprene">네오프렌</option>
+                <option value="epdm">EPDM 스펀지</option>
+                <option value="nbr">NBR 스펀지</option>
+                <option value="silicone">실리콘 스펀지</option>
+                <option value="pe">PE 폼</option>
+                <option value="etc">기타</option>
+              </select>
+            </div>
+            <div class="form-field"><label>가로 (mm)</label><input type="number" name="width" placeholder="예: 300" min="1" /></div>
+            <div class="form-field"><label>세로 (mm)</label><input type="number" name="height" placeholder="예: 200" min="1" /></div>
+            <div class="form-field"><label>두께 (mm)</label><input type="number" name="thickness" placeholder="예: 20" min="1" /></div>
+            <div class="form-field"><label>수량</label><input type="number" name="qty" placeholder="예: 100" min="1" /></div>
+            <div class="form-field form-full"><label>사용 용도</label><input type="text" name="purpose" placeholder="예: 전자제품 포장 완충재, 방음패널 등" /></div>
+            <div class="form-field form-full"><label>추가 요청사항</label><textarea name="message" rows="4" placeholder="색상, 경도, 특수 가공, 기타 요청을 자유롭게 적어주세요."></textarea></div>
+          </div>
+          <div class="form-footer">
+            <label class="agree-check"><input type="checkbox" id="agreeCheck" required /><span>개인정보 수집·이용에 동의합니다</span></label>
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              견적 요청 보내기
+            </button>
+          </div>
+        </form>
+        <div id="orderDone" class="order-done" style="display:none">
+          <div class="done-icon">✓</div>
+          <h3>접수 완료!</h3>
+          <p>영업일 기준 1일 내 담당자가 연락드립니다.</p>
+          <button class="btn btn-outline-primary" onclick="resetOrderForm()">새 주문 신청</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 연락처 -->
+  <section id="contact" class="section">
+    <div class="inner contact-grid">
+      <div data-reveal>
+        <span class="tag">연락처</span>
+        <h2>언제든지<br />연락 주세요</h2>
+        <p class="contact-hours">평일 09:00 ~ 18:00 운영 (점심 12:00~13:00)</p>
+        <ul class="contact-list">
+          <li>
+            <div class="contact-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.68a16 16 0 0 0 6 6l.91-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><b>전화</b><p>02-000-0000</p></div>
+          </li>
+          <li>
+            <div class="contact-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><b>이메일</b><p>order@tysponge.co.kr</p></div>
+          </li>
+          <li>
+            <div class="contact-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><b>주소</b><p>서울특별시 예시구 스펀지로 123</p></div>
+          </li>
+          <li>
+            <div class="contact-icon" style="background:#fee500"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#3c1e1e" stroke-width="2"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.45 7.37l-.89 3.3 3.64-1.97C10.34 19.8 11.16 20 12 20c5.52 0 10-3.92 10-8.75C22 5.92 17.52 2 12 2z"/></svg></div>
+            <div><b>카카오톡</b><p>@TY스펀지</p></div>
+          </li>
+        </ul>
+      </div>
+      <div class="map-area" data-reveal="right">
+        <div class="map-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.3"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>지도 영역</span>
+          <small>카카오맵 또는 네이버맵 API 연동</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="inner footer-body">
+      <div class="footer-brand">
+        <p class="footer-logo">TY<span>스펀지</span></p>
+        <p>스펀지 주문제작의 모든 것,<br />TY스펀지와 함께 하세요.</p>
+      </div>
+      <div class="footer-nav">
+        <h5>바로가기</h5>
+        <a href="#about">회사소개</a><a href="#products">소재안내</a>
+        <a href="#process">제작과정</a><a href="#order">주문하기</a>
+      </div>
+      <div class="footer-nav">
+        <h5>고객지원</h5>
+        <a href="#faq">자주묻는질문</a><a href="#contact">연락처</a>
+        <a href="#">이용약관</a><a href="#">개인정보처리방침</a>
+      </div>
+      <div class="footer-contact">
+        <h5>문의</h5>
+        <p>📞 02-000-0000</p>
+        <p>✉️ order@tysponge.co.kr</p>
+        <p>⏰ 평일 09:00 ~ 18:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="inner">
+        <p>상호: TY스펀지 &nbsp;|&nbsp; 대표: 홍길동 &nbsp;|&nbsp; 사업자등록번호: 000-00-00000 &nbsp;|&nbsp; 주소: 서울특별시 예시구 스펀지로 123</p>
+        <p>&copy; 2025 TY스펀지. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 플로팅 버튼 -->
+  <div class="float-wrap">
+    <a href="tel:020000000" class="float-btn float-call" title="전화 문의">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.68a16 16 0 0 0 6 6l.91-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a href="#order" class="float-btn float-order">주문</a>
+    <button id="topBtn" class="float-btn float-top" aria-label="맨 위로">↑</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
