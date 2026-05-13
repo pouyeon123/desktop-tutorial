@@ -93,7 +93,7 @@ document.querySelectorAll('.mc-btn').forEach(btn => {
 });
 
 /* ── FAQ accordion ── */
-function faq(btn) {
+function toggleFaq(btn) {
   const item = btn.closest('.fi');
   const open = item.classList.contains('open');
   document.querySelectorAll('.fi.open').forEach(i => i.classList.remove('open'));
