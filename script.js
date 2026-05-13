@@ -1,112 +1,142 @@
-// Preloader
+/* Preloader */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('done');
-  }, 1400);
+  setTimeout(() => document.getElementById('preloader').classList.add('out'), 1400);
 });
 
-// Header scroll
+/* Header */
 const header = document.getElementById('header');
+const fabTop = document.getElementById('fabTop');
+
 window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-  const floatTop = document.getElementById('floatTop');
-  floatTop.classList.toggle('visible', window.scrollY > 400);
-});
+  header.classList.toggle('stuck', window.scrollY > 40);
+  fabTop.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
 
-// Mobile nav
-const menuToggle = document.getElementById('menuToggle');
-const mobileNav = document.getElementById('mobileNav');
-menuToggle.addEventListener('click', () => {
-  mobileNav.classList.toggle('open');
-});
-mobileNav.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => mobileNav.classList.remove('open'));
-});
+/* Mobile menu */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
-// Product filter
-document.querySelectorAll('.filter-btn').forEach(btn => {
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+/* Product filter */
+document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+    const f = btn.dataset.f;
+    document.querySelectorAll('.pcard').forEach(c => {
+      c.classList.toggle('off', f !== 'all' && c.dataset.cat !== f);
     });
   });
 });
 
-// Card order button — prefill material select
-const materialMap = {
-  pu: 'pu', eva: 'eva', melamine: 'melamine',
-  neoprene: 'neoprene', epdm: 'epdm', nbr: 'nbr',
-  silicone: 'silicone', pe: 'pe',
-};
-document.querySelectorAll('.card-order-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const val = btn.dataset.material;
-    if (val) document.getElementById('material').value = val;
+/* Card → prefill material */
+document.querySelectorAll('.pcard-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.mat;
+    if (val) document.getElementById('materialSelect').value = val;
   });
 });
 
-// FAQ accordion
+/* FAQ */
 function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
+  const item = btn.closest('.fitem');
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  document.querySelectorAll('.fitem.open').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
 
-// Order form
-function submitOrder(e) {
+/* Order form */
+function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.textContent = '처리 중...';
   btn.disabled = true;
   setTimeout(() => {
     document.getElementById('orderForm').style.display = 'none';
-    const success = document.getElementById('orderSuccess');
-    success.style.display = 'block';
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    triggerAos(success);
-  }, 900);
+    const done = document.getElementById('orderDone');
+    done.style.display = 'block';
+    done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 800);
 }
 
 function resetForm() {
   const form = document.getElementById('orderForm');
   form.reset();
   form.style.display = 'block';
-  document.getElementById('orderSuccess').style.display = 'none';
+  document.getElementById('orderDone').style.display = 'none';
   const btn = document.getElementById('submitBtn');
-  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 견적 요청 보내기';
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 견적 요청 보내기';
   btn.disabled = false;
 }
 
-// Simple AOS (Animate on Scroll)
-function triggerAos(el) {
-  el.classList.add('aos-in');
-}
-
-const aosObserver = new IntersectionObserver((entries) => {
+/* Scroll reveal */
+const ro = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const delay = entry.target.dataset.aosDelay ? parseInt(entry.target.dataset.aosDelay) : 0;
-      setTimeout(() => entry.target.classList.add('aos-in'), delay);
-      aosObserver.unobserve(entry.target);
-    }
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('in');
+    ro.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('[data-aos]').forEach(el => aosObserver.observe(el));
+document.querySelectorAll('.reveal, .reveal-right').forEach(el => ro.observe(el));
 
-// Active nav highlight on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav ul li a');
+/* Nav active highlight */
+const sections = [...document.querySelectorAll('section[id]')];
+const navLinks = [...document.querySelectorAll('#nav a')];
+
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
+  const y = window.scrollY + 100;
+  let cur = '';
+  sections.forEach(s => { if (y >= s.offsetTop) cur = s.id; });
   navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--primary)' : '';
+    const isActive = a.getAttribute('href') === `#${cur}`;
+    a.style.color = (isActive && !a.classList.contains('nav-order')) ? 'var(--blue)' : '';
   });
 }, { passive: true });
+
+/* Simple hero particles */
+(function () {
+  const canvas = document.createElement('canvas');
+  const wrap = document.getElementById('particles');
+  if (!wrap) return;
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;opacity:.35';
+  wrap.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  let W, H, dots = [];
+
+  function resize() {
+    W = canvas.width = wrap.offsetWidth;
+    H = canvas.height = wrap.offsetHeight;
+  }
+
+  function init() {
+    dots = Array.from({ length: 40 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 2 + 1,
+      vx: (Math.random() - .5) * .4,
+      vy: (Math.random() - .5) * .4,
+      a: Math.random() * .5 + .2,
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    dots.forEach(d => {
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0 || d.x > W) d.vx *= -1;
+      if (d.y < 0 || d.y > H) d.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${d.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  init();
+  draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
