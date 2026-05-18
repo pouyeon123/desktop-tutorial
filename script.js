@@ -1,30 +1,19 @@
 /* ── 카카오맵 ── */
-if (typeof kakao !== 'undefined') {
+window.addEventListener('load', function () {
+  if (typeof kakao === 'undefined' || !kakao.maps) return;
+  var mapEl = document.getElementById('kakaoMap');
+  if (!mapEl) return;
+
   kakao.maps.load(function () {
-    var mapEl = document.getElementById('kakaoMap');
-    if (!mapEl) return;
-
-    var map = new kakao.maps.Map(mapEl, {
-      center: new kakao.maps.LatLng(37.7315, 126.5196),
-      level: 4
+    var coords = new kakao.maps.LatLng(37.6937, 126.5483);
+    var map = new kakao.maps.Map(mapEl, { center: coords, level: 4 });
+    var marker = new kakao.maps.Marker({ map: map, position: coords });
+    var infowindow = new kakao.maps.InfoWindow({
+      content: '<div style="padding:8px 14px;font-size:13px;font-weight:700;white-space:nowrap;">TY스펀지</div>'
     });
-
-    var geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch('경기도 김포시 대곶면 율마로256번길 116', function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        map.setCenter(coords);
-
-        var marker = new kakao.maps.Marker({ map: map, position: coords });
-
-        var infowindow = new kakao.maps.InfoWindow({
-          content: '<div style="padding:8px 14px;font-size:13px;font-weight:700;white-space:nowrap;">TY스펀지</div>'
-        });
-        infowindow.open(map, marker);
-      }
-    });
+    infowindow.open(map, marker);
   });
-}
+});
 
 /* ── Loader ── */
 window.addEventListener('load', () => {
